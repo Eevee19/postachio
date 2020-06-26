@@ -6,6 +6,11 @@ class LoginPage extends Component {
   constructor(props) {
     super(props);
 
+    this.state = {
+      username: "",
+      password: "",
+    };
+
     this.handleUsernameChange = this.handleUsernameChange.bind(this);
     this.handlePasswordChange = this.handlePasswordChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -57,26 +62,48 @@ class LoginPage extends Component {
 
   render() {
     return (
-      <div>
-        <button onClick={this.handleClick} id="github-btn">
-          Sign In with Github!
-        </button>
+      <div id="login-box">
+        <a href="http://github.com/login/oauth/authorize?client_id=ba52815cf9a41762d41f&redirect_uri=http://localhost:3000/user/login/callback">
+          <button id="github-btn">
+            Sign in with Github
+            <img src="./assets/fa-github.svg" alt="Github" id="fa-github" />
+          </button>
+        </a>
         <form onSubmit={this.handleSubmit}>
-          <label htmlFor="username-input">Username:</label>
+          <label
+            htmlFor="username-input"
+            id="username-input"
+            className="login-label"
+          >
+            Username:
+          </label>
           <input
             onChange={this.handleUsernameChange}
             type="text"
             id="username-input"
+            className="login-input"
           />
-          <label htmlFor="password-input">Password:</label>
+          <label
+            htmlFor="password-input"
+            id="password-input"
+            className="login-label"
+          >
+            Password:
+          </label>
           <input
             onChange={this.handlePasswordChange}
             type="password"
             id="password-input"
+            className="login-input"
           />
-          <button onSubmit={this.handleSubmit} type="submit" id="login-btn">
-            Login
-          </button>
+          <div id="login-btns">
+            <button onSubmit={this.handleSubmit} type="submit" id="login-btn">
+              Login
+            </button>
+            <a href="#" id="register">
+              Register
+            </a>
+          </div>
         </form>
       </div>
     );
