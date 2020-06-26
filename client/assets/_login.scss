@@ -31,12 +31,15 @@ button {
   }
 }
 
-#github-btn {
+#github-a {
   grid-area: github;
+  margin: 0 auto;
+  width: 60%;
+}
+
+#github-btn {
   background-color: white;
   border: 1px solid black;
-  width: 60%;
-  margin: 0 auto;
 
   &:hover {
     border: 1px solid lightgray;
