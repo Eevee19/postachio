@@ -1,20 +1,48 @@
 {
   "name": "postachio",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
+  "description": "An internal helpdesk.",
+  "main": "./client/index.js",
+  "scripts": {},
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/vicNYC/postachio.git"
+    "url": "git+https://github.com/Eevee19/postachio.git"
   },
   "keywords": [],
-  "author": "",
+  "author": "Brian Hong, Joyce Lo, Nicole Ip, Shahrukh Khan, Victor To",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/vicNYC/postachio/issues"
+    "url": "https://github.com/Eevee19/postachio/issues"
   },
-  "homepage": "https://github.com/vicNYC/postachio#readme"
+  "homepage": "https://github.com/Eevee19/postachio#readme",
+  "dependencies": {
+    "axios": "^0.19.2",
+    "express": "^4.17.1",
+    "nodemon": "^2.0.4",
+    "pg": "^8.2.1",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
+    "react-redux": "^7.2.0",
+    "react-router-dom": "^5.2.0",
+    "redux": "^4.0.5",
+    "redux-devtools-extension": "^2.13.8"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.10.3",
+    "@babel/preset-env": "^7.10.3",
+    "@babel/preset-react": "^7.10.1",
+    "babel-loader": "^8.1.0",
+    "bcrypt": "^5.0.0",
+    "concurrently": "^5.2.0",
+    "cross-env": "^7.0.2",
+    "css-loader": "^3.6.0",
+    "file-loader": "^6.0.0",
+    "sass": "^1.26.9",
+    "sass-loader": "^8.0.2",
+    "style-loader": "^1.2.1",
+    "url-loader": "^4.1.0",
+    "webpack": "^4.43.0",
+    "webpack-cli": "^3.3.12",
+    "webpack-dev-server": "^3.11.0"
+  }
 }
