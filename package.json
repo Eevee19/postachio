@@ -3,7 +3,11 @@
   "version": "1.0.0",
   "description": "An internal helpdesk.",
   "main": "./client/index.js",
-  "scripts": {},
+  "scripts": {
+    "build": "NODE_ENV=production webpack",
+    "dev": "NODE_ENV=development concurrently \"nodemon server/server.js\" \"webpack-dev-server --open --hot\"",
+    "start": "NODE_ENV=production nodemon server/server.js"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Eevee19/postachio.git"
