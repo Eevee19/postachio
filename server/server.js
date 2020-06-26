@@ -94,14 +94,19 @@ app.get("/user/login/callback", async (req, res) => {
   if (githubData) {
     req.session.githubId = githubData.id;
     req.session.token = token;
-    res.redirect("/feed"); //need to change where to redirect to
+    res.redirect("/main"); //need to change where to redirect to
   } else {
     console.log("Error");
     res.send("Error occurred");
   }
 });
 
-app.get("/feed", (req, res) => {
+app.post("/login", (req, res) => {
+  console.log(req.body);
+});
+
+app.get("/main", (req, res) => {
+  //should print actual feed from front end
   if (req.session.githubId) {
     res.send("Hello user <pre>" + JSON.stringify(req.session));
   } else {
