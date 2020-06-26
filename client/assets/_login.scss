@@ -1,0 +1,121 @@
+#login-box {
+  position: fixed;
+  display: grid;
+  grid-template-columns: auto auto;
+  grid-template-areas: 
+  "github github"
+  "username-label username-input"
+  "password-label password-input"
+  "login .";
+  width: 250px;
+  height: 150px;
+  top: 50%;
+  left: 50%;
+  margin-top: -75px;
+  margin-left: -125px;
+  padding: 20px;
+  border: 1px solid black;
+  border-radius: 4px;
+}
+
+button {
+  border-radius: 4px;
+  padding: 7px;
+
+  &:focus {
+    outline: none;
+  }
+
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+#github-a {
+  grid-area: github;
+  margin: 0 auto;
+  width: 60%;
+}
+
+#github-btn {
+  background-color: white;
+  border: 1px solid black;
+
+  &:hover {
+    border: 1px solid lightgray;
+    background-color: lightgray;
+  }
+}
+
+#fa-github {
+  height: 16px;
+  vertical-align: middle;
+  margin-left: 3px;
+}
+
+#username-label {
+  grid-area: username-label;
+  display: inline-block;
+  margin-top: 15px;
+}
+
+#username-input {
+  grid-area: username-input;
+  display: inline-block;
+  margin-top: 15px;
+}
+
+#password-label {
+  grid-area: password-label;
+  display: inline-block;
+  margin-bottom: 15px;
+}
+
+#password-input {
+  grid-area: password-input;
+  display: inline-block;
+  margin-bottom: 15px;
+}
+
+.login-label {
+  margin-bottom: 7px;
+}
+
+.login-input {
+  float: right;
+}
+
+#login-btns {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+#login-btn {
+  border: none;
+  background-color: black;
+  border: none;
+  color: white;
+  width: 30%;
+  margin-right: 15px;
+  vertical-align: middle;
+
+  &:hover {
+    background-color: darkgray;
+  }
+}
+
+#register {
+  color: black;
+  text-decoration: none;
+  font-size: 14px;
+
+  &:visited {
+    color: black;
+  }
+
+  &:hover {
+    color: darkgray;
+  }
+}
