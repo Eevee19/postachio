@@ -63,7 +63,10 @@ class LoginPage extends Component {
   render() {
     return (
       <div id="login-box">
-        <a href="http://github.com/login/oauth/authorize?client_id=ba52815cf9a41762d41f&redirect_uri=http://localhost:3000/user/login/callback">
+        <a
+          href="http://github.com/login/oauth/authorize?client_id=ba52815cf9a41762d41f&redirect_uri=http://localhost:3000/user/login/callback"
+          id="github-a"
+        >
           <button id="github-btn">
             Sign in with Github
             <img src="./assets/fa-github.svg" alt="Github" id="fa-github" />
