@@ -14,7 +14,7 @@ const client_id = "018afc8e70d311f82880";
 const client_secret = "95ad0b05467bb98f3e56ae00531ac82a039c72ee";
 const cookie_secret = "postachio";
 
-app.use(express.static(path.resolve(__dirname, "../client/index.html")));
+app.use(express.static(path.resolve(__dirname, "../client")));
 
 app.use(cookieParser());
 
@@ -89,6 +89,11 @@ app.post("/register", userController.createUser, (req, res) => {
 app.post("/login", userController.verifyUser, (req, res) => {
   console.log("*************** USERCONTROLLER ***************", req.body);
   res.status(200).json(res.locals.login);
+});
+
+app.get("/posts", postController.getAllPosts, (req, res) => {
+  console.log("*******************", res.locals.allPosts);
+  res.status(200).json(res.locals.allPosts);
 });
 
 app.post("/createpost", postController.createPost, (req, res) => {

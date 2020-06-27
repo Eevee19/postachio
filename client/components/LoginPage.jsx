@@ -20,9 +20,9 @@ const mapDispatchToProps = (dispatch) => ({
   authenticate: () => {
     dispatch(actions.authenticate);
   },
-  loginUser: (user) => {
-    dispatch(actions.loginUser(user));
-  },
+  // loginUser: (user) => {
+  //   dispatch(actions.loginUser(user));
+  // },
 });
 
 class LoginPage extends Component {

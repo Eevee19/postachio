@@ -1,9 +1,47 @@
-h1, h4 {
+// Top navigation bar
+
+#navtop {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  grid-template-areas: "logo . navtop";
+  margin-top: -14px;
+}
+
+#home-link,
+#myaccount-link,
+#signout-link {
+  background-color: #c2e6ff;
+  border-radius: 25px;
+  font-family: "Libre Franklin";
+  font-weight: bold;
+  font-size: 12;
+  padding: 7px;
+  border: 1px dotted white;
+  box-shadow: 1px 1px 2px #888888;
+}
+
+// LOGO
+
+#logo {
+  grid-area: logo;
+  margin-left: 18px;
+
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+h1,
+h6 {
   font-family: "Libre Franklin";
 }
 
 h1 {
   display: inline-block;
+}
+
+#software-engineers {
+  margin-top: -18px;
 }
 
 #logo-img {
@@ -13,12 +51,29 @@ h1 {
   margin-top: -15px;
 }
 
-#navtop {
-  float: right;
-}
+// Navigation bar
 
 ul {
   list-style-type: none;
+
+  a {
+    color: black;
+    text-decoration: none;
+  }
+
+  a:hover {
+    color: lightgray;
+  }
+
+  a:visited {
+    color: black;
+  }
+}
+
+#navtop-list {
+  grid-area: navtop;
+  align-self: center;
+  float: right;
 }
 
 #navtop-list li {
