@@ -1,16 +1,23 @@
 import React, { Component } from "react";
 import axios from "axios";
 import { Link, Redirect } from "react-router-dom";
+import * as actions from "../action.js";
+
+const mapStateToProps = (state) => ({
+  username: state.username,
+  password: state.password,
+  isLoggedIn: state.isLoggedIn,
+});
+
+const mapDispatchToProps = () => ({
+  authenticate: () => {
+    dispatch(actions.authenticate);
+  },
+});
 
 class LoginPage extends Component {
   constructor(props) {
     super(props);
-
-    this.state = {
-      username: "",
-      password: "",
-      isLoggedIn: false
-    };
 
     this.handleUsernameChange = this.handleUsernameChange.bind(this);
     this.handlePasswordChange = this.handlePasswordChange.bind(this);
@@ -47,10 +54,10 @@ class LoginPage extends Component {
     axios
       .post("/login", user)
       .then((res) => {
-        if(res.data) {
+        if (res.data) {
           this.setState({
             isLoggedIn: true,
-          })
+          });
         }
       })
       .catch((err) => {
@@ -58,10 +65,9 @@ class LoginPage extends Component {
       });
   }
 
-
   render() {
-    if(this.state.isLoggedIn){
-      return <Redirect to="/main"/>;
+    if (this.state.isLoggedIn) {
+      return <Redirect to="/main" />;
     }
     return (
       <div id="login-box">
