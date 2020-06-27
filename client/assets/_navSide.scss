@@ -1,0 +1,40 @@
+#nav-side {
+  font-family: "Libre Franklin";
+  font-size: 16;
+  font-weight: bold;
+  background-color: #0e56c9;
+  color: white;
+  width: 460px;
+  height: 550px;
+  padding-top: 8px;
+  padding-bottom: 10px;
+  line-height: 215%;
+  overflow-y: scroll;
+  border-radius: 10px;
+  box-shadow: 1px 1px 2px #888888;
+  text-shadow: 1px 1px 1px black;
+  position: relative;
+  top: 18px;
+  margin-right: 18px;
+}
+
+#categories-text {
+  font-size: 18;
+  text-decoration: underline;
+}
+
+ul {
+  a {
+    color: white;
+    text-decoration: none;
+  }
+
+  a:hover {
+    color: rgb(194, 194, 194);
+    cursor: pointer;
+  }
+
+  a:visited {
+    color: black;
+  }
+}

@@ -6,6 +6,7 @@ module.exports = {
     index: ["./client/index.js"],
   },
   output: {
+    publicPath: "/",
     filename: "bundle.js",
     path: path.resolve(__dirname, "build"),
   },
@@ -14,7 +15,7 @@ module.exports = {
       {
         test: /\.jsx?/,
         loader: "babel-loader",
-        exclude: path.resolve(__dirname, "node-modules"),
+        exclude: /node-modules/,
         query: {
           presets: ["@babel/preset-env", "@babel/preset-react"],
         },
@@ -30,10 +31,12 @@ module.exports = {
     ],
   },
   devServer: {
+    port: 8080,
     publicPath: "/build/",
-    contentBase: path.join(__dirname, "./client"),
+    contentBase: "./",
+    // contentBase: path.join(__dirname, "./client"),
     proxy: {
-      "/": "http://localhost:3000",
+      "/": "http://localhost:3000/",
     },
   },
 };

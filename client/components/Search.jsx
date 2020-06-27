@@ -8,7 +8,7 @@ const Search = (props) => {
         id="search-input"
         placeholder="What's your question?"
       />
-      <button>Search</button>
+      <button id="search-btn">Search</button>
     </div>
   );
 };

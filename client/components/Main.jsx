@@ -11,10 +11,12 @@ class Main extends Component {
 
   render() {
     return (
-      <div>
+      <div id="main">
         <NavTop />
-        <NavSide />
-        <View />
+        <div id="container">
+          <NavSide />
+          <View />
+        </div>
       </div>
     );
   }

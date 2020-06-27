@@ -1,25 +1,53 @@
-import React from 'react';
+import React from "react";
 
 const navSide = (props) => {
   return (
-    <div id="nav-side"> 
-      <ul>
-        <a><li>Unit 1</li></a>
-        <a><li>Unit 2</li></a>
-        <a><li>Unit 3</li></a>
-        <a><li>Unit 4</li></a>
-        <a><li>Unit 5</li></a>
-        <a><li>Unit 6</li></a>
-        <a><li>Unit 7</li></a>
-        <a><li>Unit 8</li></a>
-        <a><li>Unit 9</li></a>
-        <a><li>Unit 10</li></a>
-        <a><li>Unit 11</li></a>
-        <a><li>Unit 12</li></a>
-        <a><li>Unit 13</li></a>
-        <a><li>Misc</li></a>
+    <div id="nav-side">
+      <ul id="listed-categories">
+        <a>
+          <li>UNIT 1: JS Fundamentals</li>
+        </a>
+        <a>
+          <li>UNIT 2: Data Structures &amp; Algorithms</li>
+        </a>
+        <a>
+          <li>UNIT 3: Algorithms</li>
+        </a>
+        <a>
+          <li>UNIT 4: Snake Game</li>
+        </a>
+        <a>
+          <li>UNIT 5: React</li>
+        </a>
+        <a>
+          <li>UNIT 6: Redux</li>
+        </a>
+        <a>
+          <li>UNIT 7: AJAX</li>
+        </a>
+        <a>
+          <li>UNIT 8: Node</li>
+        </a>
+        <a>
+          <li>UNIT 9: Express</li>
+        </a>
+        <a>
+          <li>UNIT 10: Databases</li>
+        </a>
+        <a>
+          <li>UNIT 11: Authentication</li>
+        </a>
+        <a>
+          <li>UNIT 12: Testing</li>
+        </a>
+        <a>
+          <li>UNIT 13: Build Tools &amp; Webpack</li>
+        </a>
+        <a>
+          <li>MISCELLANEOUS</li>
+        </a>
       </ul>
-    </div> 
+    </div>
   );
 };
 

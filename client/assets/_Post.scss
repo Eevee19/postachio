@@ -1,0 +1,27 @@
+#posts-head {
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  margin: 15px 0;
+}
+
+#post-container {
+  height: 69vh;
+  width: 100%;
+  overflow-y: scroll;
+}
+
+#Post {
+  padding: 15px;
+  border: 1px solid black;
+  border-radius: 4px;
+  margin: 7px;
+
+  label {
+    display: inline-block;
+  }
+
+  div {
+    display: inline-block;
+  }
+}
