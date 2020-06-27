@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import axios from "axios";
 import { Link, Redirect } from "react-router-dom";
 import * as actions from "../action.js";
+import { connect } from "react-redux";
 
 const mapStateToProps = (state) => ({
   username: state.username,
@@ -9,64 +10,51 @@ const mapStateToProps = (state) => ({
   isLoggedIn: state.isLoggedIn,
 });
 
-const mapDispatchToProps = () => ({
+const mapDispatchToProps = (dispatch) => ({
+  usernameChange: (usernameInput) => {
+    dispatch(actions.usernameChange(usernameInput.target.value));
+  },
+  passwordChange: (passwordInput) => {
+    dispatch(actions.passwordChange(passwordInput.target.value));
+  },
   authenticate: () => {
     dispatch(actions.authenticate);
+  },
+  loginUser: (user) => {
+    dispatch(actions.loginUser(user));
   },
 });
 
 class LoginPage extends Component {
-  constructor(props) {
-    super(props);
+  // }
 
-    this.handleUsernameChange = this.handleUsernameChange.bind(this);
-    this.handlePasswordChange = this.handlePasswordChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
-  }
+  // handleSubmit(e) {
+  //   // Code to handle submit.
+  //   e.preventDefault();
 
-  handleUsernameChange(e) {
-    this.setState({
-      username: e.target.value,
-    });
+  //   const { username, password } = this.state;
 
-    console.log(this.state);
-  }
+  //   const user = {
+  //     username,
+  //     password,
+  //   };
 
-  handlePasswordChange(e) {
-    this.setState({
-      password: e.target.value,
-    });
-
-    console.log(this.state);
-  }
-
-  handleSubmit(e) {
-    // Code to handle submit.
-    e.preventDefault();
-
-    const { username, password } = this.state;
-
-    const user = {
-      username,
-      password,
-    };
-
-    axios
-      .post("/login", user)
-      .then((res) => {
-        if (res.data) {
-          this.setState({
-            isLoggedIn: true,
-          });
-        }
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  }
+  //   axios
+  //     .post("/login", user)
+  //     .then((res) => {
+  //       if (res.data) {
+  //         this.setState({
+  //           isLoggedIn: true,
+  //         });
+  //       }
+  //     })
+  //     .catch((err) => {
+  //       console.log(err);
+  //     });
+  // }
 
   render() {
-    if (this.state.isLoggedIn) {
+    if (this.props.isLoggedIn) {
       return <Redirect to="/main" />;
     }
     return (
@@ -80,7 +68,7 @@ class LoginPage extends Component {
             <img src="./assets/fa-github.svg" alt="Github" id="fa-github" />
           </button>
         </a>
-        <form onSubmit={this.handleSubmit}>
+        <form onSubmit={this.props.authenticate}>
           <label
             htmlFor="username-input"
             id="username-input"
@@ -89,7 +77,7 @@ class LoginPage extends Component {
             Username:
           </label>
           <input
-            onChange={this.handleUsernameChange}
+            onChange={this.props.usernameChange}
             type="text"
             id="username-input"
             className="login-input"
@@ -102,13 +90,13 @@ class LoginPage extends Component {
             Password:
           </label>
           <input
-            onChange={this.handlePasswordChange}
+            onChange={this.props.passwordChange}
             type="password"
             id="password-input"
             className="login-input"
           />
           <div id="login-btns">
-            <button onSubmit={this.handleSubmit} type="submit" id="login-btn">
+            <button onSubmit={this.props.authenticate} id="login-btn">
               Login
             </button>
             <a href="#" id="register">
@@ -121,4 +109,4 @@ class LoginPage extends Component {
   }
 }
 
-export default LoginPage;
+export default connect(mapStateToProps, mapDispatchToProps)(LoginPage);

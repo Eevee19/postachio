@@ -1,4 +1,5 @@
 import * as types from "../constants/actionTypes";
+import axios from "axios";
 
 const initialState = {
   username: "",
@@ -13,11 +14,24 @@ const initialState = {
 
 const postsReducer = (state = initialState, action) => {
   switch (action.type) {
-    case types.CREATE_POST:
+    case types.USERNAME_CHANGE:
       return {
         ...state,
+        username: action.payload,
+      };
+    case types.PASSWORD_CHANGE:
+      return {
+        ...state,
+        password: action.payload,
       };
     case types.AUTHENTICATE:
+      // Code to handle submit.
+      return {
+        ...state,
+        isLoggedIn: authIsLoggedIn,
+      };
+
+    case types.CREATE_POST:
       return {
         ...state,
       };
@@ -25,6 +39,8 @@ const postsReducer = (state = initialState, action) => {
       return {
         ...state,
       };
+    default:
+      return state;
   }
 };
 

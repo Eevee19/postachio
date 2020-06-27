@@ -6,6 +6,7 @@ const path = require("path");
 const bodyParser = require("body-parser");
 const userController = require("./controllers/userController.js");
 const postController = require("./controllers/postController.js");
+const cookieParser = require("cookie-parser");
 
 const PORT = process.env.PORT || 3000;
 
@@ -15,8 +16,11 @@ const cookie_secret = "postachio";
 
 app.use(express.static(path.resolve(__dirname, "../client/index.html")));
 
+app.use(cookieParser());
+
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.json());
+
 app.use(
   cookieSession({
     secret: cookie_secret,
@@ -50,6 +54,10 @@ async function getGithubUser(access_token) {
   return data;
 }
 
+app.get("/", (req, res) => {
+  res.sendFile(path.resolve(__dirname, "../client/index.html"));
+});
+
 app.get("/user/login/callback", async (req, res) => {
   const { query } = req;
   const { code } = query;
@@ -58,11 +66,20 @@ app.get("/user/login/callback", async (req, res) => {
   if (githubData) {
     req.session.githubId = githubData.id;
     req.session.token = token;
-    res.redirect("/main"); //need to change where to redirect to
+    res.redirect("/"); //need to change where to redirect to // redirect back to '/'
   } else {
     console.log("Error");
     res.send("Error occurred");
   }
+});
+
+app.get("/authenticategithub", (req, res) => {
+  if (req.session.token) {
+    res.locals.login = true;
+  } else {
+    res.locals.login = false;
+  }
+  res.json(res.locals.login);
 });
 
 app.post("/register", userController.createUser, (req, res) => {
@@ -70,6 +87,7 @@ app.post("/register", userController.createUser, (req, res) => {
 });
 
 app.post("/login", userController.verifyUser, (req, res) => {
+  console.log("*************** USERCONTROLLER ***************", req.body);
   res.status(200).json(res.locals.login);
 });
 
@@ -81,22 +99,14 @@ app.delete("/deletepost", postController.deletePost, (req, res) => {
   res.status(200).json({}); // see what we have to send back
 });
 
-/*
-// might just need to get from react frontend
-app.get("/main", (req, res) => {
-  //should print actual feed from front end
-  if (req.session.githubId) {
-    res.send("Hello user <pre>" + JSON.stringify(req.session));
-  } else {
-    res.send("Not authorized, <a href='/login'>login</a>");
-  }
-});
-*/
-
 app.get("/logout", (req, res) => {
   req.session = null;
   res.redirect("/");
 });
+
+if (process.env.NODE_ENV === "production") {
+  app.use("/build", express.static(path.resolve(__dirname, "../build")));
+}
 
 app.use("*", (req, res) => {
   res.sendFile(path.join(__dirname, "../client/index.html"));
