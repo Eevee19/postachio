@@ -1,0 +1,27 @@
+h1, h4 {
+  font-family: "Libre Franklin";
+}
+
+h1 {
+  display: inline-block;
+}
+
+#logo-img {
+  display: inline-block;
+  max-height: 48px;
+  vertical-align: middle;
+  margin-top: -15px;
+}
+
+#navtop {
+  float: right;
+}
+
+ul {
+  list-style-type: none;
+}
+
+#navtop-list li {
+  display: inline;
+  margin: 0 7px;
+}
