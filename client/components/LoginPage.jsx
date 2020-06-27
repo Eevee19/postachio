@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import axios from "axios";
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 
 class LoginPage extends Component {
   constructor(props) {
@@ -9,6 +9,7 @@ class LoginPage extends Component {
     this.state = {
       username: "",
       password: "",
+      isLoggedIn: false
     };
 
     this.handleUsernameChange = this.handleUsernameChange.bind(this);
@@ -45,17 +46,27 @@ class LoginPage extends Component {
 
     axios
       .post("/login", user)
-      .then(() => console.log("Add code here for successful login"))
+      .then((res) => {
+        if(res.data) {
+          this.setState({
+            isLoggedIn: true,
+          })
+        }
+      })
       .catch((err) => {
         console.log(err);
       });
   }
 
+
   render() {
+    if(this.state.isLoggedIn){
+      return <Redirect to="/main"/>;
+    }
     return (
       <div id="login-box">
         <a
-          href="http://github.com/login/oauth/authorize?client_id=ba52815cf9a41762d41f&redirect_uri=http://localhost:3000/user/login/callback"
+          href="http://github.com/login/oauth/authorize?client_id=018afc8e70d311f82880&redirect_uri=http://localhost:3000/user/login/callback"
           id="github-a"
         >
           <button id="github-btn">

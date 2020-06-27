@@ -14,9 +14,9 @@ class App extends Component {
     return (
       <div>
         <Switch> 
-          <Route component={LoginPage} exact path="/"/> 
-          <Route component={Register} path="/signup"/>
           <Route component={Main} path="/main"/>
+          <Route component={Register} path="/signup"/>
+          <Route component={LoginPage} exact path="/"/> 
         </Switch>
       </div>
     );

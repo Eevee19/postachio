@@ -5,7 +5,7 @@ import View from './View.jsx';
 import axios from 'axios';
 
 class Main extends Component {
-  constructor(props) {
+  constructor(props) { 
     super(props);
   };
 
