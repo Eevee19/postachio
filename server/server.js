@@ -9,18 +9,19 @@ const postController = require('./controllers/postController.js');
 
 const PORT = process.env.PORT || 3000;
 
-const client_id = "ba52815cf9a41762d41f";
-const client_secret = "f91cc3eef185cf904920b4aa4c7deefc7345b954";
+const client_id = "018afc8e70d311f82880";
+const client_secret = "95ad0b05467bb98f3e56ae00531ac82a039c72ee";
 const cookie_secret = "postachio";
 
+app.use(express.static(path.resolve(__dirname, "../client/index.html")));
+
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(express.json());
 app.use(
   cookieSession({
     secret: cookie_secret,
   })
 );
-
-app.use(bodyParser.urlencoded({ extended: true }));
-app.use(express.json());
 
 async function getAccessToken(code) {
   const res = await fetch("https://github.com/login/oauth/access_token", {
@@ -69,6 +70,7 @@ app.post("/register", userController.createUser, (req, res) => {
 })
 
 app.post("/login", userController.verifyUser, (req, res) => {
+  console.log('****************THIS IS RES LOCALS LOGIN*******************', res.locals.login);
   res.status(200).json(res.locals.login);
 });
 
@@ -80,8 +82,9 @@ app.delete("/deletepost", postController.deletePost, (req, res) => {
   res.status(200).json({}); // see what we have to send back
 });
 
+
 /*
-might just need to get from react frontend
+// might just need to get from react frontend
 app.get("/main", (req, res) => {
   //should print actual feed from front end
   if (req.session.githubId) {
@@ -91,6 +94,7 @@ app.get("/main", (req, res) => {
   }
 });
 */
+
 
 app.get("/logout", (req, res) => {
   req.session = null;
