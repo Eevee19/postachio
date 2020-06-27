@@ -64,7 +64,9 @@ class LoginPage extends Component {
           <input onChange={this.handlePasswordChange} type="password" id="password-input" className="login-input" />
           <div id="login-btns">
             <button onSubmit={this.handleSubmit} type="submit" id="login-btn">Login</button>
+          <Link to="/signup"> 
             <a href="#" id="register">Register</a>
+          </Link>
           </div>
         </form>
       </div>
