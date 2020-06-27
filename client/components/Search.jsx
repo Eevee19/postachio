@@ -4,8 +4,8 @@ const Search = (props) => {
     return (
         <div> 
             <div id="Search"> 
-                // input text box in  
-            </div>  
+                <input type="text" id="search-input" placeholder="What's your question?"/>
+                <button>Search</button>
         </div>       
     )
    
