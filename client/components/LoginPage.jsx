@@ -51,15 +51,6 @@ class LoginPage extends Component {
       });
   };
 
-  handleClick(e) {
-    e.preventDefault();
-
-    axios
-      .get('/github')
-      .then((res) => console.log('Github~~~!!!!', res))
-      .catch(() => console.log('Github FAIL'));
-  }
-
   render() {
     return (
       <div id="login-box">
