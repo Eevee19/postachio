@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import { Provider } from 'react-redux';
-import { Switch } from 'react-router-dom';
+import { Switch, Route } from 'react-router-dom';
 import LoginPage from './LoginPage.jsx';
 import Main from './Main.jsx';
-
+import Register from './Register.jsx'
 
 class App extends Component {
   constructor() {
@@ -13,7 +13,11 @@ class App extends Component {
   render() {
     return (
       <div>
-        <Main />
+        <Switch> 
+          <Route component={LoginPage} exact path="/"/> 
+          <Route component={Register} path="/signup"/>
+          <Route component={Main} path="/main"/>
+        </Switch>
       </div>
     );
   };
