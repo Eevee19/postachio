@@ -1,3 +1,10 @@
 node_modules/
 package-lock.json
+<<<<<<< HEAD
+<<<<<<< HEAD
+=======
 build/ 
+>>>>>>> ce3dea3709b37193a9ca20dd91dadb379d614142
+=======
+build/ 
+>>>>>>> ca613d42a0a19dc4113d44bdf75644a1e9310a11
