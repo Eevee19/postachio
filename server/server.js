@@ -4,7 +4,8 @@ const fetch = require("node-fetch");
 const cookieSession = require("cookie-session");
 const path = require("path");
 const bodyParser = require("body-parser");
-const proxy = require("express-http-proxy");
+const userController = require('./controllers/userController.js');
+const postController = require('./controllers/postController.js');
 
 const PORT = process.env.PORT || 3000;
 
@@ -19,45 +20,7 @@ app.use(
 );
 
 app.use(bodyParser.urlencoded({ extended: true }));
-
-// app.use((req, res, next) => {
-//   res.header("Access-Control-Allow-Origin", "*");
-//   next();
-// });
-
-//Use something like this?
-// doesn't work :( :**( :****( lol mitch replied, so hopefully we can figure it out after lecture oh nice!
-// app.all("*", function (req, res, next) {
-//   res.header("Access-Control-Allow-Origin", "*");
-//   res.header("Access-Control-Allow-Headers", "X-Requested-With");
-//   next();
-// });
-
-// app.get("/github", (req, res) => {
-//   //redirect to github authorization link
-//   const uri = `http://github.com/login/oauth/authorize?client_id=${client_id}&redirect_uri=http://localhost:3000/user/login/callback`;
-//   res.redirect(uri);
-// });
-
-// app.get(
-//   "/github",
-//   proxy(
-//     "https://github.com/login/oauth/authorize?client_id=${client_id}&redirect_uri=http://localhost:3000/user/login/callback`"
-//   )
-// );
-
-// app.get(
-//   "/github",
-//   proxy({
-//     pathRewrite: {
-//       "^/github":
-//         "https://github.com/login/oauth/authorize?client_id=${client_id}&redirect_uri=http://localhost:3000/user/login/callback`",
-//     },
-//     target:
-//       "https://github.com/login/oauth/authorize?client_id=${client_id}&redirect_uri=http://localhost:3000/user/login/callback`",
-//     secure: false,
-//   })
-// );
+app.use(express.json());
 
 async function getAccessToken(code) {
   const res = await fetch("https://github.com/login/oauth/access_token", {
@@ -101,10 +64,24 @@ app.get("/user/login/callback", async (req, res) => {
   }
 });
 
-app.post("/login", (req, res) => {
-  console.log(req.body);
+app.post("/register", userController.createUser, (req, res) => {
+  res.status(200).json({}); // send something back to the frontend
+})
+
+app.post("/login", userController.verifyUser, (req, res) => {
+  res.status(200).json(res.locals.login);
 });
 
+app.post("/createpost", postController.createPost, (req, res) =>  {
+  res.status(200).json({});
+});
+
+app.delete("/deletepost", postController.deletePost, (req, res) => {
+  res.status(200).json({}); // see what we have to send back
+});
+
+/*
+might just need to get from react frontend
 app.get("/main", (req, res) => {
   //should print actual feed from front end
   if (req.session.githubId) {
@@ -113,6 +90,7 @@ app.get("/main", (req, res) => {
     res.send("Not authorized, <a href='/login'>login</a>");
   }
 });
+*/
 
 app.get("/logout", (req, res) => {
   req.session = null;
