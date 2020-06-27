@@ -4,8 +4,8 @@ const fetch = require("node-fetch");
 const cookieSession = require("cookie-session");
 const path = require("path");
 const bodyParser = require("body-parser");
-const userController = require('./controllers/userController.js');
-const postController = require('./controllers/postController.js');
+const userController = require("./controllers/userController.js");
+const postController = require("./controllers/postController.js");
 
 const PORT = process.env.PORT || 3000;
 
@@ -67,21 +67,19 @@ app.get("/user/login/callback", async (req, res) => {
 
 app.post("/register", userController.createUser, (req, res) => {
   res.status(200).json({}); // send something back to the frontend
-})
+});
 
 app.post("/login", userController.verifyUser, (req, res) => {
-  console.log('****************THIS IS RES LOCALS LOGIN*******************', res.locals.login);
   res.status(200).json(res.locals.login);
 });
 
-app.post("/createpost", postController.createPost, (req, res) =>  {
+app.post("/createpost", postController.createPost, (req, res) => {
   res.status(200).json({});
 });
 
 app.delete("/deletepost", postController.deletePost, (req, res) => {
   res.status(200).json({}); // see what we have to send back
 });
-
 
 /*
 // might just need to get from react frontend
@@ -94,7 +92,6 @@ app.get("/main", (req, res) => {
   }
 });
 */
-
 
 app.get("/logout", (req, res) => {
   req.session = null;
